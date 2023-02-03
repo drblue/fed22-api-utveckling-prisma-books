@@ -10,7 +10,7 @@ import prisma from '../prisma'
 export const index = async (req: Request, res: Response) => {
 	try {
 		const publishers = await prisma.publisher.findMany()
-		res.send(publishers)
+		res.send({ status: "success", data: publishers })
 	} catch (err) {
 		res.status(500).send({ message: "Something went wrong" })
 	}
@@ -32,7 +32,7 @@ export const show = async (req: Request, res: Response) => {
 			}
 		})
 
-		return res.send(publisher)
+		return res.send({ status: "success", data: publisher })
 
 	} catch (err) {
 		return res.status(404).send({ message: "Not found" })
@@ -50,7 +50,7 @@ export const store = async (req: Request, res: Response) => {
 			}
 		})
 
-		return res.send(publisher)
+		return res.send({ status: "success", data: publisher })
 
 	} catch (err) {
 		return res.status(500).send({ message: "Something went wrong" })
@@ -71,7 +71,7 @@ export const update = async (req: Request, res: Response) => {
 			data: req.body,
 		})
 
-		return res.send(publisher)
+		return res.send({ status: "success", data: publisher })
 
 	} catch (err) {
 		return res.status(500).send({ message: "Something went wrong" })
